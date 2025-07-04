@@ -2,18 +2,7 @@ import { NavLink } from "react-router";
 
 function ErrorPage() {
   return (
-    <section
-      className="error-page bg-gradient-to-r from-teal-200 via-blue-200
-     to-purple-200 relative"
-    >
-      {/* lottie image */}
-      <div
-        className="w-60 md:w-80 lg:w-[600px] absolute z-20
-      top-40 -left-9
-      md:left-6 md:top-24
-      lg:top-16  lg:left-10"
-      ></div>
-
+    <section className="error-page relative">
       <div
         className=" flex items-center justify-center text-gray-800  min-h-screen
      px-10 md:px-28 lg:px-0"
