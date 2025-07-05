@@ -9,6 +9,7 @@ import ErrorMessage from "../Components/Reusable/ErrorMessage";
 
 const AllBooks = () => {
   const location = useLocation();
+
   const { data, isLoading, isError } = useGetBooksQuery(undefined);
   const books = data?.data || [];
 
@@ -44,7 +45,9 @@ const AllBooks = () => {
              gap-4 px-4"
         >
           {books.map((book: IBook) => (
-            <BookCard key={book._id} book={book} />
+            <Link to={`/books/${book._id}`} key={book._id}>
+              <BookCard book={book} />
+            </Link>
           ))}
         </div>
       ) : (

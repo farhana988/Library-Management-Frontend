@@ -1,4 +1,4 @@
-import { Link } from "react-router";
+import { Link, useLocation } from "react-router";
 import type { IBook } from "../../Interfaces/books.interface";
 import { CiEdit } from "react-icons/ci";
 import { MdDelete } from "react-icons/md";
@@ -9,6 +9,10 @@ interface Book {
 }
 
 const BookCard = ({ book }: Book) => {
+  const location = useLocation();
+
+  const isAllBooksPage = location.pathname === "/books";
+
   const { _id, title, author, genre, isbn, description, copies, available } =
     book || {};
 
@@ -19,7 +23,10 @@ const BookCard = ({ book }: Book) => {
     >
       {/* Card Content */}
       <div className="space-y-2">
-        <h2 className="text-xl font-bold ">{title.slice(0, 25)}</h2>
+        <h2 className="text-xl font-bold ">
+          {" "}
+          {isAllBooksPage ? title.slice(0, 25) : title}
+        </h2>
         <p className="text-sm">
           <b>Author:</b> {author}
         </p>
@@ -28,14 +35,15 @@ const BookCard = ({ book }: Book) => {
           {genre}
         </p>
         <p className="text-sm">
-          <b>ISBN:</b> {isbn}
+          <b>ISBN: </b> {isbn}
         </p>
         <p className="text-sm">
           <b>Description: </b>
-          {description?.slice(0, 60)}
+          {isAllBooksPage ? description?.slice(0, 60) : description}
         </p>
         <p className="text-sm">
-          <b>Copies:{copies}</b>
+          <b>Copies: </b>
+          {copies}
         </p>
         <p className="text-sm">
           <b>Availability: </b>
