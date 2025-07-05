@@ -14,12 +14,19 @@ const CreateBook = () => {
     handleSubmit,
     reset,
     formState: { errors },
-  } = useForm<IBook>();
+  } = useForm<IBook>({
+    defaultValues: {
+      available: true,
+    },
+  });
 
   const [createBook, { isLoading, isError }] = useCreateBookMutation();
 
   const onSubmit = async (bookData: IBook) => {
     try {
+      if (bookData.available === undefined) {
+        bookData.available = true;
+      }
       await createBook(bookData).unwrap();
       reset();
       showSuccessAlert("Book created successfully!");
@@ -126,6 +133,24 @@ const CreateBook = () => {
             <p className="text-red-500 text-sm">{errors.copies.message}</p>
           )}
         </div>
+
+        {/* Available */}
+        <div className="flex items-center space-x-2">
+          <input
+            type="checkbox"
+            id="available"
+            {...register("available", {
+              validate: (value) => value === true || "You must check this box",
+            })}
+            className="rounded"
+          />
+          <label htmlFor="available" className="font-medium">
+            Available
+          </label>
+        </div>
+        {errors.available && (
+          <p className="text-red-500 text-sm">{errors.available.message}</p>
+        )}
 
         {/* Submit */}
         <button

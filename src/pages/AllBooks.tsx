@@ -17,6 +17,8 @@ import {
 import BtnwithIcon from "../Components/Reusable/BtnwithIcon";
 import { FaArrowRight } from "react-icons/fa";
 
+import BookTable from "../Components/tables/BookTable";
+
 const AllBooks = () => {
   const location = useLocation();
   const navigate = useNavigate();
@@ -53,10 +55,8 @@ const AllBooks = () => {
     <>
       <Heading title={isHomePage ? "Featured Books" : "All Books"} />
 
-      {/* add books */}
-      {isHomePage ? (
-        ""
-      ) : (
+      {/* Add Book Button */}
+      {!isHomePage && (
         <BtnwithIcon
           to="/create-book"
           label="Add New Books"
@@ -64,34 +64,73 @@ const AllBooks = () => {
         />
       )}
 
-      {/* book card */}
-      {displayedBooks.length > 0 ? (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 px-4">
-          {displayedBooks.map((book: IBook) => (
-            <div
-              key={book._id}
-              className="cursor-pointer"
-              onClick={(e) => {
-                const target = e.target as HTMLElement;
+      {/* Books Display */}
+      {displayedBooks?.length > 0 ? (
+        // card
+        isHomePage ? (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 px-4">
+            {displayedBooks?.map((book: IBook) => (
+              <div
+                key={book?._id}
+                className="cursor-pointer"
+                onClick={(e) => {
+                  const target = e.target as HTMLElement;
 
-                if (
-                  target.closest("button") ||
-                  target.closest("a") ||
-                  target.getAttribute("role") === "button"
-                ) {
-                  return;
-                }
+                  if (
+                    target.closest("button") ||
+                    target.closest("a") ||
+                    target.getAttribute("role") === "button"
+                  ) {
+                    return;
+                  }
 
-                navigate(`/books/${book._id}`);
-              }}
+                  navigate(`/books/${book?._id}`);
+                }}
+              >
+                <BookCard book={book} handleDelete={handleDelete} />
+              </div>
+            ))}
+          </div>
+        ) : (
+          // table
+          <div className="overflow-x-auto mt-6 px-4">
+            <table
+              className="table-auto w-full border border-collapse border-[#819067]
+             shadow-md rounded-lg"
             >
-              <BookCard book={book} handleDelete={handleDelete} />
-            </div>
-          ))}
-        </div>
+              <thead>
+                <tr className="bg-primary text-left shadow-lg rounded-lg">
+                  {[
+                    "Title",
+                    "Author",
+                    "Genre",
+                    "ISBN",
+                    "Copies",
+                    "Availability",
+                    "Actions",
+                  ].map((heading) => (
+                    <th key={heading} className="p-3 border border-[#819067]">
+                      {heading}
+                    </th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                {displayedBooks?.map((book: IBook) => (
+                  <BookTable
+                    key={book?._id}
+                    book={book}
+                    handleDelete={handleDelete}
+                  />
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )
       ) : (
         <p className="text-center">No books found.</p>
       )}
+
       {isHomePage && (
         <BtnwithIcon
           to="/books"

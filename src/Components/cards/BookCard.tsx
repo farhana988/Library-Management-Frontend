@@ -14,7 +14,7 @@ const BookCard = ({ book, handleDelete }: Book) => {
 
   const isAllBooksPage = location.pathname === "/books" || "/";
 
-  const { _id, title, author, genre, isbn, description, copies, available } =
+  const { _id, title, author, genre, description, copies, available } =
     book || {};
 
   return (
@@ -23,7 +23,7 @@ const BookCard = ({ book, handleDelete }: Book) => {
      hover:shadow-[#819067] flex flex-col justify-between"
     >
       {/* Card Content */}
-      <div className={`space-y-2 ${isAllBooksPage?"h-56":"h-full"} `}>
+      <div className={`space-y-2 ${isAllBooksPage ? "h-48" : "h-full"} `}>
         <h2 className="text-xl font-bold ">
           {" "}
           {isAllBooksPage ? title.slice(0, 25) : title}
@@ -36,9 +36,6 @@ const BookCard = ({ book, handleDelete }: Book) => {
           {genre}
         </p>
         <p className="text-sm">
-          <b>ISBN: </b> {isbn}
-        </p>
-        <p className="text-sm">
           <b>Description: </b>
           {isAllBooksPage ? description?.slice(0, 60) : description}
         </p>
@@ -48,15 +45,13 @@ const BookCard = ({ book, handleDelete }: Book) => {
         </p>
         <p className="text-sm">
           <b>Availability: </b>
-          {available ? (
-            <span className="text-xs font-medium rounded-2xl px-4 py-[2px] bg-green-300">
-              Available
-            </span>
-          ) : (
-            <span className="text-xs font-medium rounded-2xl px-4 py-[2px] bg-red-300">
-              Not Available
-            </span>
-          )}
+          <span
+            className={`text-xs font-medium rounded-2xl px-4 py-[2px] ${
+              available ? "bg-green-300" : "bg-red-300"
+            }`}
+          >
+            {available ? "Available" : "Unavailable"}
+          </span>
         </p>
       </div>
 
