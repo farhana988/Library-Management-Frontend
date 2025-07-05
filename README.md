@@ -1,69 +1,67 @@
-# React + TypeScript + Vite
+# 📚 ReadMate (Library Management System)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A Library Management System built with React, TypeScript, and Redux Toolkit Query (RTK Query). It provides core functionalities for managing a library including book cataloging and borrowing operations. It is designed to be publicly accessible without login, making it ideal for small public libraries or demo purposes.
 
-Currently, two official plugins are available:
+- **Live Link** - https://library-management-frontend-beryl-seven.vercel.app
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🛠️ Tech Stack
 
-## Expanding the ESLint configuration
+- **React**
+- **TypeScript**
+- **RTK Query**
+- **React Router**
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## ✨ Features
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+### 1. 🔓 Public Routes
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+- All pages are accessible without login or authentication.
+- No user-specific features purely public and open.
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### 2. 🛠️ Book Management
+
+#### 📋 Book List
+
+- Displays a list of all books in the system.
+- Action Buttons:
+  - ✏️ **Edit Book**: Opens form pre-filled with book info. Updates book via API.
+  - 🗑️ **Delete Book**: Confirms and deletes book from system.
+  - 📖 **Borrow Book**: Opens form to borrow the selected book.
+
+#### ➕ Add New Book
+
+- Provides a form to create and add new books.
+- Fields: `Title`, `Author`, `Genre`, `ISBN`, `Description`, `Copies`, and optional `Available`.
+- Automatically sets `Available` to true unless specified.
+
+### 3. 📦 Borrow Book
+
+- Users can borrow books using the Borrow Book Form.
+- Prevents borrowing if no copies are left
+
+### 4. 📊 Borrow Summary
+
+- A separate summary view displaying all borrowed books.
+
+---
+
+## 🧪 Development & Running Locally
+
+### Clone the repository
+
+```bash
+git clone https://github.com/farhana988/Library-Management-Frontend.git
+cd library-management-frontend
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### Install dependencies
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+```bash
+npm install
+```
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### Run the development server
+
+```bash
+npm run dev
 ```
