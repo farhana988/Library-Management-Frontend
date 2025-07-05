@@ -1,3 +1,9 @@
+export interface IBorrow {
+  book: string;
+  quantity: number;
+  dueDate: string;
+}
+
 export interface IBorrowSummary {
   _id: string;
   book: {

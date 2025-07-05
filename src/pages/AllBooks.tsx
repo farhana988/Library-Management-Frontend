@@ -92,11 +92,13 @@ const AllBooks = () => {
       ) : (
         <p className="text-center">No books found.</p>
       )}
-     <BtnwithIcon
-          to="/create-book"
+      {isHomePage && (
+        <BtnwithIcon
+          to="/books"
           label="Show All Books"
           icon={<FaArrowRight />}
         />
+      )}
     </>
   );
 };
