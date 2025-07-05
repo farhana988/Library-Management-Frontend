@@ -4,6 +4,7 @@ import ErrorPage from "../pages/ErrorPage";
 import Home from "../pages/Home";
 import AllBooks from "../pages/AllBooks";
 import BorrowSummary from "../pages/BorrowSummary";
+import CreateBook from "../pages/CreateBook";
 
 const router = createBrowserRouter([
   {
@@ -22,6 +23,10 @@ const router = createBrowserRouter([
       {
         path: "/borrow-summary",
         element: <BorrowSummary />,
+      },
+      {
+        path: "/create-book",
+        element: <CreateBook />,
       },
     ],
   },

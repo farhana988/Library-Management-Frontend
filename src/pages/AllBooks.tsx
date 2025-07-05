@@ -5,6 +5,7 @@ import BookCard from "../Components/cards/BookCard";
 import Heading from "../Components/Reusable/Heading";
 import { IoIosAdd } from "react-icons/io";
 import LoadingSpinner from "../Components/Reusable/LoadingSpinner";
+import ErrorMessage from "../Components/Reusable/ErrorMessage";
 
 const AllBooks = () => {
   const location = useLocation();
@@ -13,13 +14,7 @@ const AllBooks = () => {
 
   if (isLoading) return <LoadingSpinner />;
 
-  if (isError)
-    return (
-      <p>
-        Something went wrong! Try refreshing the page or check your internet
-        connection.
-      </p>
-    );
+  if (isError) return <ErrorMessage />;
 
   return (
     <>
@@ -33,7 +28,7 @@ const AllBooks = () => {
       ) : (
         <div className="flex items-end justify-end mr-4 mb-6">
           <Link
-            to="/addBook"
+            to="/create-book"
             className=" bg-primary font-medium py-2 pl-3 pr-6 rounded-lg 
             flex justify-center items-center gap-2"
           >
