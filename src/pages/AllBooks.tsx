@@ -1,4 +1,4 @@
-import { Link, useLocation, useNavigate } from "react-router";
+import { useLocation, useNavigate } from "react-router";
 import {
   useDeleteBookMutation,
   useGetBooksQuery,
@@ -14,10 +14,13 @@ import {
   showErrorAlert,
   showSuccessAlert,
 } from "../utils/swal";
+import BtnwithIcon from "../Components/Reusable/BtnwithIcon";
+import { FaArrowRight } from "react-icons/fa";
 
 const AllBooks = () => {
   const location = useLocation();
   const navigate = useNavigate();
+  const isHomePage = location.pathname === "/";
 
   const { data, isLoading, isError } = useGetBooksQuery(undefined, {
     refetchOnMountOrArgChange: true,
@@ -25,6 +28,7 @@ const AllBooks = () => {
   const [deleteBook] = useDeleteBookMutation();
   const books = data?.data || [];
 
+  const displayedBooks = isHomePage ? books.slice(0, 8) : books;
   // delete function
   const handleDelete = (id: string) => {
     confirmDeleteAlert().then((result) => {
@@ -47,29 +51,23 @@ const AllBooks = () => {
 
   return (
     <>
-      <Heading
-        title={location.pathname === "/" ? "Featured Books" : "All Books"}
-      />
+      <Heading title={isHomePage ? "Featured Books" : "All Books"} />
 
       {/* add books */}
-      {location.pathname === "/" ? (
+      {isHomePage ? (
         ""
       ) : (
-        <div className="flex items-end justify-end mr-4 mb-6">
-          <Link
-            to="/create-book"
-            className=" bg-primary font-medium py-2 pl-3 pr-6 rounded-lg 
-            flex justify-center items-center gap-2"
-          >
-            <IoIosAdd className="text-2xl" /> Add Books
-          </Link>
-        </div>
+        <BtnwithIcon
+          to="/create-book"
+          label="Add New Books"
+          icon={<IoIosAdd className="text-2xl" />}
+        />
       )}
 
       {/* book card */}
-      {books.length > 0 ? (
+      {displayedBooks.length > 0 ? (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 px-4">
-          {books.map((book: IBook) => (
+          {displayedBooks.map((book: IBook) => (
             <div
               key={book._id}
               className="cursor-pointer"
@@ -94,6 +92,11 @@ const AllBooks = () => {
       ) : (
         <p className="text-center">No books found.</p>
       )}
+     <BtnwithIcon
+          to="/create-book"
+          label="Show All Books"
+          icon={<FaArrowRight />}
+        />
     </>
   );
 };

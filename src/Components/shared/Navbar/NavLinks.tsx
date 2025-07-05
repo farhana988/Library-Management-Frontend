@@ -8,11 +8,11 @@ const getLinkClassName = ({ isActive }: { isActive: boolean }) =>
 const NavLinks = () => {
   return (
     <>
-      <NavLink to="/" className={getLinkClassName}>
-        Home
-      </NavLink>
       <NavLink to="/books" className={getLinkClassName}>
         All Book
+      </NavLink>
+      <NavLink to="/create-book" className={getLinkClassName}>
+        Add Books
       </NavLink>
       <NavLink to="/borrow-summary" className={getLinkClassName}>
         Borrow Summary

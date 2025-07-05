@@ -12,18 +12,18 @@ interface Book {
 const BookCard = ({ book, handleDelete }: Book) => {
   const location = useLocation();
 
-  const isAllBooksPage = location.pathname === "/books";
+  const isAllBooksPage = location.pathname === "/books" || "/";
 
   const { _id, title, author, genre, isbn, description, copies, available } =
     book || {};
 
   return (
     <div
-      className="border-b-2 border-[#819067] p-5 rounded-2xl shadow-xl
+      className="border-b-2 border-[#819067] p-5 rounded-xl shadow-xl
      hover:shadow-[#819067] flex flex-col justify-between"
     >
       {/* Card Content */}
-      <div className="space-y-2">
+      <div className={`space-y-2 ${isAllBooksPage?"h-56":"h-full"} `}>
         <h2 className="text-xl font-bold ">
           {" "}
           {isAllBooksPage ? title.slice(0, 25) : title}

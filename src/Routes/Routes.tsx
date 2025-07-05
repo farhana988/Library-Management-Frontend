@@ -6,6 +6,7 @@ import AllBooks from "../pages/AllBooks";
 import BorrowSummary from "../pages/BorrowSummary";
 import CreateBook from "../pages/CreateBook";
 import BookDetails from "../pages/BookDetails";
+import EditBook from "../pages/EditBook";
 
 const router = createBrowserRouter([
   {
@@ -35,7 +36,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/edit-book/:id",
-        element: <BookDetails />,
+        element: <EditBook />,
       },
     ],
   },

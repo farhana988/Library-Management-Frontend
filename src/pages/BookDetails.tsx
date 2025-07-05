@@ -10,6 +10,7 @@ import type { IBook } from "../Interfaces/books.interface";
 import BookCard from "../Components/cards/BookCard";
 
 import { confirmDeleteAlert, showErrorAlert, showSuccessAlert } from "../utils/swal";
+import Heading from "../Components/Reusable/Heading";
 
 const BookDetails = () => {
   const { id } = useParams();
@@ -42,6 +43,7 @@ const BookDetails = () => {
 
   return (
     <>
+    <Heading title="Book details"/>
       {/* book details */}
       <BookCard book={book} handleDelete={handleDelete} />
     </>

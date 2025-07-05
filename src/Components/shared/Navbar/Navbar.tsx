@@ -1,5 +1,6 @@
 import { useState } from "react";
 import NavLinks from "./NavLinks";
+import { Link } from "react-router";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -8,9 +9,9 @@ const Navbar = () => {
   return (
     <nav className="bg-primary  p-4 sticky top-0 z-50 backdrop-blur-xl">
       <div className="container mx-auto flex items-center justify-between">
-        <div className=" text-2xl font-bold italic tracking-wider">
+        <Link to={"/"} className=" text-2xl font-bold italic tracking-wider">
           ReadMate
-        </div>
+        </Link>
         <button className=" lg:hidden" onClick={toggleMenu}>
           {/* hamburger */}
           <svg
