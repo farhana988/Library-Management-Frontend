@@ -7,7 +7,7 @@ const socialLinks = [
 ];
 const Footer = () => {
   return (
-    <footer className="bg-primary py-6 ">
+    <footer className="bg-primary py-6 mt-32">
       <div className="md:w-5/6 xl:w-1/2 mx-auto px-4">
         {/* Footer Content */}
         <div className="flex flex-col md:flex-row justify-between items-center">

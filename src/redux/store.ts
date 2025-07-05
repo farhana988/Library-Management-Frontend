@@ -1,5 +1,10 @@
-import { configureStore } from '@reduxjs/toolkit'
+import { configureStore } from "@reduxjs/toolkit";
+import { bookApi } from "./feature/BookApi";
 
-export default configureStore({
-  reducer: {}
-})
+export const store= configureStore({
+  reducer: {
+    [bookApi.reducerPath]: bookApi.reducer,
+  },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(bookApi.middleware),
+});

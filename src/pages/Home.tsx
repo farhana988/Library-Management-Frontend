@@ -1,12 +1,11 @@
-
+import AllBooks from "./AllBooks";
 
 const Home = () => {
-    return (
-        <div>
-            Home
-Home
-        </div>
-    );
+  return (
+    <>
+      <AllBooks />
+    </>
+  );
 };
 
 export default Home;
