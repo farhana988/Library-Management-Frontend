@@ -33,6 +33,10 @@ const router = createBrowserRouter([
         path: "/books/:id",
         element: <BookDetails />,
       },
+      {
+        path: "/edit-book/:id",
+        element: <BookDetails />,
+      },
     ],
   },
 ]);

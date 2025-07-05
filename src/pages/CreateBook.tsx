@@ -18,9 +18,9 @@ const CreateBook = () => {
 
   const [createBook, { isLoading, isError }] = useCreateBookMutation();
 
-  const onSubmit = async (data: IBook) => {
+  const onSubmit = async (bookData: IBook) => {
     try {
-      await createBook(data).unwrap();
+      await createBook(bookData).unwrap();
       reset();
       showSuccessAlert("Book created successfully!");
       navigate("/books");

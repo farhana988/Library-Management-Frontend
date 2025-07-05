@@ -6,9 +6,10 @@ import { FaHandHoldingMedical } from "react-icons/fa";
 
 interface Book {
   book: IBook;
+  handleDelete: (id: string) => void;
 }
 
-const BookCard = ({ book }: Book) => {
+const BookCard = ({ book, handleDelete }: Book) => {
   const location = useLocation();
 
   const isAllBooksPage = location.pathname === "/books";
@@ -61,10 +62,10 @@ const BookCard = ({ book }: Book) => {
 
       {/* Button */}
       <div className="flex justify-between items-center flex-wrap gap-3 mt-6 text-xl">
-        <Link to={`/books/${_id}`}>
+        <Link to={`/edit-book/${_id}`}>
           <CiEdit />
         </Link>
-        <button className="">
+        <button className="" onClick={() => handleDelete(book._id)}>
           <MdDelete />
         </button>
         <Link to={`/borrow/${_id}`}>

@@ -21,3 +21,17 @@ export const showErrorAlert = (message: string = "Something went wrong") => {
     confirmButtonColor: "#d33",
   });
 };
+
+
+export const confirmDeleteAlert = (message = "You won't be able to revert this!") => {
+  return Swal.fire({
+    title: "Are you sure?",
+    text: message,
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#3085d6",
+    cancelButtonColor: "#d33",
+    confirmButtonText: "Yes, delete it!",
+   
+  });
+};
